@@ -313,9 +313,137 @@ footer {
     box-shadow: var(--hover-shadow);
 }
 
+/* Language Selector */
+.lang-selector {
+    position: relative;
+    flex-shrink: 0;
+}
+
+.lang-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 14px;
+    background: var(--white);
+    border: 2px solid rgba(255, 183, 0, 0.3);
+    border-radius: 14px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+
+.lang-btn:hover {
+    border-color: var(--primary);
+    box-shadow: 0 4px 12px rgba(255, 183, 0, 0.2);
+}
+
+.lang-globe {
+    font-size: 16px;
+}
+
+.lang-caret {
+    font-size: 10px;
+    opacity: 0.5;
+    transition: transform 0.2s ease;
+}
+
+.lang-selector.open .lang-caret {
+    transform: rotate(180deg);
+}
+
+.lang-dropdown {
+    display: none;
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    background: var(--white);
+    border: 2px solid rgba(255, 183, 0, 0.2);
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    min-width: 190px;
+    max-height: 320px;
+    overflow-y: auto;
+    z-index: 100;
+    padding: 8px;
+    scrollbar-width: thin;
+    scrollbar-color: var(--primary) transparent;
+}
+
+.lang-dropdown::-webkit-scrollbar {
+    width: 4px;
+}
+
+.lang-dropdown::-webkit-scrollbar-thumb {
+    background: var(--primary);
+    border-radius: 2px;
+}
+
+.lang-selector.open .lang-dropdown {
+    display: block;
+    animation: dropIn 0.15s ease;
+}
+
+@keyframes dropIn {
+    from { opacity: 0; transform: translateY(-6px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.lang-option {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 14px;
+    border-radius: 12px;
+    text-decoration: none;
+    color: var(--text);
+    font-size: 15px;
+    font-weight: 600;
+    transition: background 0.15s ease;
+    cursor: pointer;
+}
+
+.lang-option:hover {
+    background: rgba(255, 183, 0, 0.1);
+    color: var(--text);
+}
+
+.lang-option.active {
+    background: rgba(255, 183, 0, 0.15);
+    color: var(--secondary);
+}
+
+.lang-option-name {
+    flex: 1;
+}
+
+.lang-option-code {
+    font-size: 11px;
+    font-weight: 800;
+    color: #B2BEC3;
+    margin-left: 8px;
+    letter-spacing: 0.05em;
+}
+
+.lang-option.active .lang-option-code {
+    color: var(--secondary);
+}
+
 /* Mobile Responsiveness */
 @media (max-width: 768px) {
     h1 { font-size: 40px; }
     .hero { padding: 40px 0; }
     .card { padding: 24px; }
+
+    .lang-btn {
+        padding: 6px 10px;
+        font-size: 13px;
+    }
+
+    .lang-dropdown {
+        right: -8px;
+    }
 }
